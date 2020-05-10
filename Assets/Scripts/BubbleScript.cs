@@ -16,10 +16,20 @@ public class BubbleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(_bubbleValue > 0)
         this.GetComponent<SpriteRenderer>().sprite = sprites[_bubbleValue-1]; 
     }
 
     void OnMouseDown(){
-        _bubbleValue = _bubbleValue % 4 + 1;   
+
+        _bubbleValue--;
+        if(_bubbleValue == 0){
+            burstBubble();
+        }  
     }  
+
+    void burstBubble(){
+        Destroy(gameObject);
+    }
+
 }
