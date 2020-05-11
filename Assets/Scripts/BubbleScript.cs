@@ -6,7 +6,9 @@ public class BubbleScript : MonoBehaviour
 {
 
     public Sprite[] sprites;
+    public GameObject tinyBubble;
     private int _bubbleValue = 4;
+
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,17 @@ public class BubbleScript : MonoBehaviour
     }  
 
     void burstBubble(){
+
+        GameObject tb1 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
+        GameObject tb2 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
+        GameObject tb3 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
+        GameObject tb4 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
+
+        tb1.GetComponent<TinyBubbleScript>().SetDir(1);
+        tb2.GetComponent<TinyBubbleScript>().SetDir(2);
+        tb3.GetComponent<TinyBubbleScript>().SetDir(3);
+        tb4.GetComponent<TinyBubbleScript>().SetDir(4);
+
         Destroy(gameObject);
     }
 
