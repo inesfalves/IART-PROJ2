@@ -24,13 +24,19 @@ public class BubbleScript : MonoBehaviour
 
     void OnMouseDown(){
 
-        _bubbleValue--;
-        if(_bubbleValue == 0){
-            burstBubble();
-        }  
+        TouchBubble();
     }  
 
-    void burstBubble(){
+    void TouchBubble()
+    {
+        _bubbleValue--;
+        if (_bubbleValue == 0)
+        {
+            BurstBubble();
+        }
+    }
+
+    void BurstBubble(){
 
         Vector3 pos = transform.position;
 
@@ -54,7 +60,7 @@ public class BubbleScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        burstBubble();
+        TouchBubble();
         Destroy(other.gameObject);
     }
 }
