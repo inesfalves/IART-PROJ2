@@ -7,7 +7,7 @@ public class BubbleScript : MonoBehaviour
 
     public Sprite[] sprites;
     public GameObject tinyBubble;
-    private int _bubbleValue = 4;
+    public int _bubbleValue = 4;
 
 
     // Start is called before the first frame update
@@ -19,7 +19,7 @@ public class BubbleScript : MonoBehaviour
     void Update()
     {
         if(_bubbleValue > 0)
-        this.GetComponent<SpriteRenderer>().sprite = sprites[_bubbleValue-1]; 
+            this.GetComponent<SpriteRenderer>().sprite = sprites[_bubbleValue-1]; 
     }
 
     void OnMouseDown(){
@@ -32,17 +32,29 @@ public class BubbleScript : MonoBehaviour
 
     void burstBubble(){
 
-        GameObject tb1 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
-        GameObject tb2 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
-        GameObject tb3 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
-        GameObject tb4 = Instantiate(tinyBubble, transform.position, Quaternion.identity);
+        Vector3 pos = transform.position;
+
+        GameObject tb1 = Instantiate(tinyBubble, pos, Quaternion.identity);
+        GameObject tb2 = Instantiate(tinyBubble, pos, Quaternion.identity);
+        GameObject tb3 = Instantiate(tinyBubble, pos, Quaternion.identity);
+        GameObject tb4 = Instantiate(tinyBubble, pos, Quaternion.identity);
+        
+        Destroy(gameObject);
 
         tb1.GetComponent<TinyBubbleScript>().SetDir(1);
         tb2.GetComponent<TinyBubbleScript>().SetDir(2);
         tb3.GetComponent<TinyBubbleScript>().SetDir(3);
         tb4.GetComponent<TinyBubbleScript>().SetDir(4);
 
-        Destroy(gameObject);
+        Destroy(tb1, 4);
+        Destroy(tb2, 4);
+        Destroy(tb3, 4);
+        Destroy(tb4, 4);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        burstBubble();
+        Destroy(other.gameObject);
+    }
 }

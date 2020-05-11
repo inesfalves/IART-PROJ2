@@ -4,38 +4,38 @@ using UnityEngine;
 
 public class TinyBubbleScript : MonoBehaviour
 {
-
-    // 1-up 2-down 3-left 4-right
-    private int _direction;
+    private Vector2 _velocity;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        _velocity = new Vector2(0, 0);
     }
 
     public void SetDir(int dir)
     {
-        _direction = dir;
+        // 1-up 2-down 3-left 4-right
+        switch (dir)
+        {
+            case 1:
+                _velocity = new Vector2(0, 0.1f);
+                break;
+            case 2:
+                _velocity = new Vector2(0, -0.1f);
+                break;
+            case 3:
+                _velocity = new Vector2(-0.1f, 0);
+                break;
+            case 4:
+                _velocity = new Vector2(0.1f, 0);
+                break;
+            default:
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (_direction)
-        {
-            case 1:
-                gameObject.transform.position = new Vector2(transform.position.x, transform.position.y + 0.1f);
-                break;
-            case 2:
-                gameObject.transform.position = new Vector2(transform.position.x, transform.position.y - 0.1f);
-                break;
-            case 3:
-                gameObject.transform.position = new Vector2(transform.position.x - 0.1f, transform.position.y);
-                break;
-            case 4:
-                gameObject.transform.position = new Vector2(transform.position.x + 0.1f, transform.position.y);
-                break;
-            default:
-                break;
-        }
+        gameObject.transform.Translate(_velocity);
     }
 }
