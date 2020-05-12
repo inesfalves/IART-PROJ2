@@ -8,12 +8,13 @@ public class BubbleScript : MonoBehaviour
     public Sprite[] sprites;
     public GameObject tinyBubble;
     public int bubbleValue = 4;
-    public GameObject levelScript;
+    private GameObject _levelScript;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        _levelScript = GameObject.Find("LevelScriptEmpty");
     }
 
     // Update is called once per frame
@@ -36,7 +37,7 @@ public class BubbleScript : MonoBehaviour
             BurstBubble();
         }
 
-        levelScript.GetComponent<LevelScript>().UpdateTouches();
+        _levelScript.GetComponent<LevelScript>().UpdateTouches();
     }
 
     void BurstBubble(){
