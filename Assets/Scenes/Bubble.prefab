@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 50291586844652466}
   m_Layer: 0
   m_Name: Bubble
-  m_TagString: Untagged
+  m_TagString: Bubble
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 74769297e492ce546a2e4f71febeaa70, type: 3}
   tinyBubble: {fileID: 2043033162349748940, guid: e9339222531ed3142b5010f9c14e35a6,
     type: 3}
-  _bubbleValue: 4
+  bubbleValue: 4
+  levelScript: {fileID: 3368897984871081343, guid: 26e4ad743caf2d748b01a589d3c1b9c2,
+    type: 3}
 --- !u!212 &1116257691682381285
 SpriteRenderer:
   m_ObjectHideFlags: 0

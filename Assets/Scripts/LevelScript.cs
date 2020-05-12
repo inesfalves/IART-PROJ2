@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelScript : MonoBehaviour
 {
-    public readonly int maxTouches;
+    public int maxTouches;
     private int _touchesLeft;
 
     // Start is called before the first frame update
@@ -17,11 +17,27 @@ public class LevelScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (HasWon())
+        {
+            print("you win :D");
+            //Application.Quit(); nao funciona com o editor
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
+        else if (_touchesLeft == 0)
+        {
+            print("you lost :(");
+            //Application.Quit();
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
     }
 
     public void UpdateTouches()
     {
         _touchesLeft--;
+    }
+
+    private bool HasWon()
+    {
+        return (GameObject.FindGameObjectsWithTag("Bubble") == null);
     }
 }

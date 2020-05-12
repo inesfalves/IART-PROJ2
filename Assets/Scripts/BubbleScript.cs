@@ -8,6 +8,7 @@ public class BubbleScript : MonoBehaviour
     public Sprite[] sprites;
     public GameObject tinyBubble;
     public int bubbleValue = 4;
+    public GameObject levelScript;
 
 
     // Start is called before the first frame update
@@ -34,6 +35,8 @@ public class BubbleScript : MonoBehaviour
         {
             BurstBubble();
         }
+
+        levelScript.GetComponent<LevelScript>().UpdateTouches();
     }
 
     void BurstBubble(){
