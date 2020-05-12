@@ -23,7 +23,7 @@ public class LevelScript : MonoBehaviour
             //Application.Quit(); nao funciona com o editor
             UnityEditor.EditorApplication.isPlaying = false;
         }
-        else if (_touchesLeft == 0)
+        else if (_touchesLeft == 0 && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0))
         {
             print("you lost :(");
             //Application.Quit();
@@ -38,6 +38,6 @@ public class LevelScript : MonoBehaviour
 
     private bool HasWon()
     {
-        return (GameObject.FindGameObjectsWithTag("Bubble") == null);
+        return (GameObject.FindGameObjectsWithTag("Bubble") == null && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0));
     }
 }

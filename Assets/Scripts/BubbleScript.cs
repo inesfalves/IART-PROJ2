@@ -25,8 +25,10 @@ public class BubbleScript : MonoBehaviour
     }
 
     void OnMouseDown(){
-
-        TouchBubble();
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
+        {
+            TouchBubble();
+        }
     }  
 
     void TouchBubble()
@@ -56,10 +58,10 @@ public class BubbleScript : MonoBehaviour
         tb3.GetComponent<TinyBubbleScript>().SetDir(3);
         tb4.GetComponent<TinyBubbleScript>().SetDir(4);
 
-        Destroy(tb1, 4);
-        Destroy(tb2, 4);
-        Destroy(tb3, 4);
-        Destroy(tb4, 4);
+        Destroy(tb1, 3);
+        Destroy(tb2, 3);
+        Destroy(tb3, 3);
+        Destroy(tb4, 3);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
