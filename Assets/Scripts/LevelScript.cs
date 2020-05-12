@@ -38,6 +38,6 @@ public class LevelScript : MonoBehaviour
 
     private bool HasWon()
     {
-        return (GameObject.FindGameObjectsWithTag("Bubble") == null && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0));
+        return (GameObject.FindGameObjectsWithTag("Bubble") == null || GameObject.FindGameObjectsWithTag("Bubble").Length == 0) && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0);
     }
 }
