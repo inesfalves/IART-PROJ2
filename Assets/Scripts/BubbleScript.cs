@@ -7,7 +7,7 @@ public class BubbleScript : MonoBehaviour
 
     public Sprite[] sprites;
     public GameObject tinyBubble;
-    public int _bubbleValue = 4;
+    public int bubbleValue = 4;
 
 
     // Start is called before the first frame update
@@ -18,8 +18,8 @@ public class BubbleScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(_bubbleValue > 0)
-            this.GetComponent<SpriteRenderer>().sprite = sprites[_bubbleValue-1]; 
+        if(bubbleValue > 0)
+            this.GetComponent<SpriteRenderer>().sprite = sprites[bubbleValue-1]; 
     }
 
     void OnMouseDown(){
@@ -29,8 +29,8 @@ public class BubbleScript : MonoBehaviour
 
     void TouchBubble()
     {
-        _bubbleValue--;
-        if (_bubbleValue == 0)
+        bubbleValue--;
+        if (bubbleValue == 0)
         {
             BurstBubble();
         }
