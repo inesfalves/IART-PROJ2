@@ -7,7 +7,7 @@ public class BubbleScript : MonoBehaviour
 
     public Sprite[] sprites;
     public GameObject tinyBubble;
-    public int bubbleValue = 4;
+    public int bubbleValue;
     private GameObject _levelScript;
 
 

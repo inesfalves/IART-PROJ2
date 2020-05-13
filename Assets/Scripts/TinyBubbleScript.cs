@@ -17,16 +17,16 @@ public class TinyBubbleScript : MonoBehaviour
         switch (dir)
         {
             case 1:
-                _velocity = new Vector2(0, 0.2f);
+                _velocity = new Vector2(0, 0.15f);
                 break;
             case 2:
-                _velocity = new Vector2(0, -0.2f);
+                _velocity = new Vector2(0, -0.15f);
                 break;
             case 3:
-                _velocity = new Vector2(-0.2f, 0);
+                _velocity = new Vector2(-0.15f, 0);
                 break;
             case 4:
-                _velocity = new Vector2(0.2f, 0);
+                _velocity = new Vector2(0.15f, 0);
                 break;
             default:
                 break;
