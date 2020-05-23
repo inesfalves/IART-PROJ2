@@ -25,21 +25,21 @@ public class BubbleScript : MonoBehaviour
     }
 
     void OnMouseDown(){
-        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
-        {
             TouchBubble();
-        }
     }  
 
     void TouchBubble()
     {
-        bubbleValue--;
-        if (bubbleValue == 0)
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
         {
-            BurstBubble();
-        }
+            bubbleValue--;
+            if (bubbleValue == 0)
+            {
+                BurstBubble();
+            }
 
-        _levelScript.GetComponent<LevelScript>().UpdateTouches();
+            _levelScript.GetComponent<LevelScript>().UpdateTouches();
+        }
     }
 
     void BurstBubble(){

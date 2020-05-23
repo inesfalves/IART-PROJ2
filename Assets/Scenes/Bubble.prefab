@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1116257691682381291}
+  - component: {fileID: 1181975916089097858}
   - component: {fileID: 1116257691682381290}
   - component: {fileID: 1116257691682381285}
   - component: {fileID: 1116257691682381288}
@@ -20,7 +20,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1116257691682381291
+--- !u!4 &1181975916089097858
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,7 +54,6 @@ MonoBehaviour:
   tinyBubble: {fileID: 2043033162349748940, guid: e9339222531ed3142b5010f9c14e35a6,
     type: 3}
   bubbleValue: 4
-  levelScript: {fileID: 0}
 --- !u!212 &1116257691682381285
 SpriteRenderer:
   m_ObjectHideFlags: 0
