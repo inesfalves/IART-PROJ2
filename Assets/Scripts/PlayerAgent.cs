@@ -13,39 +13,18 @@ public class PlayerAgent : Agent
 
     public override void CollectObservations()
     {
-        //target n agent pos
-        AddVectorObs(Target.position);
-        AddVectorObs(transform.position);
+        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+        foreach (GameObject bubble in bubbles)
+        {
+            RectTransform rectobj = bubble.GetComponent<RectTransform>();
+            AddVectorObs(bubble.GetComponent<BubbleScript>().bubbleValue);
+            AddVectorObs(rectobj.anchoredPosition);
+        }
 
-        //agent velocity
-        AddVectorObs(rBody.velocity.x);
-        AddVectorObs(rBody.velocity.z);
     }
-
-    public float speed = 10;
 
     public override void AgentAction(float[] vectorAction)
     {
-        //Actions, size = 2
-        Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = vectorAction[0];
-        controlSignal.z = vectorAction[1];
-
-        rBody.AddForce(controlSignal * speed);
-
-        //Rewards
-        float distanceToTarget = Vector3.Distance(transform.position, Target.position);
-
-        //Reached target
-        if (distanceToTarget < 1.42f)
-        {
-            SetReward(1.0f);
-            Done();
-        }
-
-        //Fell off platform
-        if (transform.position.y < 0)
-            Done();
 
     }
 
