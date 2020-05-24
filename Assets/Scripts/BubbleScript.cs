@@ -28,7 +28,7 @@ public class BubbleScript : MonoBehaviour
             TouchBubble();
     }  
 
-    void TouchBubble()
+    public void TouchBubble()
     {
         if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
         {
