@@ -12,15 +12,25 @@ public class PlayerAgent : Agent
     void Start()
     {
         _levelScript = GameObject.Find("LevelScriptEmpty").GetComponent<LevelScript>();
+        InvokeRepeating("Decide", 5.0f, 5.0f);
+    }
+
+    void Decide(){
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0){
+                RequestDecision();
+            Debug.Log("flop?");
+        }
     }
 
     public override void OnEpisodeBegin() {
+        Debug.Log("ola");
         _levelScript.ResetTouches();
         _levelScript.ResetBubbles();
-     }
+    }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        Debug.Log("a");
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
         foreach (GameObject bubble in bubbles)
         {
@@ -47,7 +57,6 @@ public class PlayerAgent : Agent
                 {
                     found_bubble = true;
                     bubble.GetComponent<BubbleScript>().TouchBubble();
-                    print("que lit");
                     break;
                 }
             }

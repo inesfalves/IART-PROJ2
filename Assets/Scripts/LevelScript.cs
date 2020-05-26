@@ -57,7 +57,15 @@ public class LevelScript : MonoBehaviour
     public void ResetBubbles()
     {
         GameObject grid = GameObject.FindGameObjectWithTag("Grid");
+        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+        GameObject[] tinies = GameObject.FindGameObjectsWithTag("TinyBubble");
 
+        foreach(GameObject bubble in bubbles){
+            Destroy(bubble);
+        }
+        foreach(GameObject tiny in tinies){
+            Destroy(tiny);
+        }
         Destroy(grid);
 
         Instantiate(level_prefab, new Vector3(0,0,0), Quaternion.identity);
