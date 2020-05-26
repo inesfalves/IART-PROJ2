@@ -22,15 +22,15 @@ public class LevelScript : MonoBehaviour
     {
         if (HasWon())
         {
-            print("you win :D");
+            print("you won :D");
             //Application.Quit(); nao funciona com o editor
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
         else if (HasLost())
         {
             print("you lost :(");
             //Application.Quit();
-            UnityEditor.EditorApplication.isPlaying = false;
+            //UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
@@ -46,7 +46,7 @@ public class LevelScript : MonoBehaviour
 
     public bool HasWon()
     {
-        return (GameObject.FindGameObjectsWithTag("Bubble") == null || GameObject.FindGameObjectsWithTag("Bubble").Length == 0) && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0);
+        return (GameObject.FindGameObjectsWithTag("Bubble") == null || GameObject.FindGameObjectsWithTag("Bubble").Length == 0);
     }
 
     public bool HasLost()
