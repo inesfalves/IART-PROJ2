@@ -55,23 +55,23 @@ public class PlayerAgent : Agent
             {
                 if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
                 {
-                    SetReward(1.0f);
+                    AddReward(1.0f);
                     EndEpisode();
                 }
                 else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
                 {
-                    SetReward(-1.0f);
+                    AddReward(-1.0f);
                     EndEpisode();
                 }
                 else
                 {
-                    SetReward(-0.5f);
+                    AddReward(-0.05f);
                 }
             }
 
             else
             {
-                SetReward(-0.7f);
+                AddReward(-0.7f);
             }
         }
 
