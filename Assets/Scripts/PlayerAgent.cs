@@ -136,13 +136,11 @@ public class PlayerAgent : Agent
             {
                 if (found_bubble && _levelScript.HasWon())
                 {
-            print("you win :D");
                     AddReward(1.0f);
                     EndEpisode();
                 }
                 else if (found_bubble && _levelScript.HasLost())
                 {
-            print("you lose :c");
                     AddReward(-1.0f);
                     EndEpisode();
                 }
