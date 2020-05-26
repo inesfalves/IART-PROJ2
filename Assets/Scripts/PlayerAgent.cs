@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using MLAgents;
+using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
 
 public class PlayerAgent : Agent
 {
@@ -13,33 +14,33 @@ public class PlayerAgent : Agent
         _levelScript = GameObject.Find("LevelScriptEmpty");
     }
 
-    public override void InitializeAgent() { }
+    public override void OnEpisodeBegin() { }
 
-    public override void CollectObservations()
+    public override void CollectObservations(VectorSensor sensor)
     {
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
         foreach (GameObject bubble in bubbles)
         {
-            RectTransform rectobj = bubble.GetComponent<RectTransform>();
-            AddVectorObs(rectobj.anchoredPosition);
-            AddVectorObs(bubble.GetComponent<BubbleScript>().bubbleValue);
+            Transform rectobj = bubble.GetComponent<Transform>();
+            sensor.AddObservation(rectobj.position);
+            sensor.AddObservation(bubble.GetComponent<BubbleScript>().bubbleValue);
         }
 
     }
 
-    public override void AgentAction(float[] vectorAction)
+    public override void OnActionReceived(float[] vectorAction)
     {
         Vector2 controlSignal = Vector2.zero;
-        controlSignal.x = vectorAction[0];
-        controlSignal.y = vectorAction[1];
+        controlSignal.x = -18 + 5*vectorAction[0];
+        controlSignal.y = 5 -4*vectorAction[1];
 
         bool found_bubble = false;
 
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
         foreach (GameObject bubble in bubbles)
         {
-            RectTransform rectobj = bubble.GetComponent<RectTransform>();
-            if(rectobj.anchoredPosition.x == controlSignal.x && rectobj.anchoredPosition.y == controlSignal.y)
+            Transform rectobj = bubble.GetComponent<Transform>();
+            if(rectobj.position.x == controlSignal.x && rectobj.position.y == controlSignal.y)
             {
                 found_bubble = true;
                 bubble.GetComponent<BubbleScript>().TouchBubble();
@@ -50,17 +51,17 @@ public class PlayerAgent : Agent
             {
                 if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
                 {
-                    SetReward(1.0f);
-                    Done();
+                    SetReward(10.0f);
+                    EndEpisode();
                 }
                 else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
                 {
-                    SetReward(-1.0f);
-                    Done();
+                    SetReward(-10.0f);
+                    EndEpisode();
                 }
                 else
                 {
-                    SetReward(-0.2f);
+                    SetReward(-0.5f);
                 }
             }
             
@@ -70,10 +71,6 @@ public class PlayerAgent : Agent
             }
         }
 
-    }
-
-    public override void AgentReset()
-    {
     }
 
 }
