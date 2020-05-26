@@ -30,45 +30,49 @@ public class PlayerAgent : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        Vector2 controlSignal = Vector2.zero;
-        controlSignal.x = -18 + 5*vectorAction[0];
-        controlSignal.y = 5 -4*vectorAction[1];
-
-        bool found_bubble = false;
-
-        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
-        foreach (GameObject bubble in bubbles)
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
         {
-            Transform rectobj = bubble.GetComponent<Transform>();
-            if(rectobj.position.x == controlSignal.x && rectobj.position.y == controlSignal.y)
-            {
-                found_bubble = true;
-                bubble.GetComponent<BubbleScript>().TouchBubble();
-                break;
-            }
-        }
+            Vector2 controlSignal = Vector2.zero;
+            controlSignal.x = -18 + 5 * vectorAction[0];
+            controlSignal.y = 5 - 4 * vectorAction[1];
 
-        if (found_bubble)
-        {
-            if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
+            bool found_bubble = false;
+
+            GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
+            foreach (GameObject bubble in bubbles)
             {
-                SetReward(1.0f);
-                EndEpisode();
+                Transform rectobj = bubble.GetComponent<Transform>();
+                if (rectobj.position.x == controlSignal.x && rectobj.position.y == controlSignal.y)
+                {
+                    found_bubble = true;
+                    bubble.GetComponent<BubbleScript>().TouchBubble();
+                    print("que lit");
+                    break;
+                }
             }
-            else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
+
+            if (found_bubble)
             {
-                SetReward(-1.0f);
-                EndEpisode();
+                if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
+                {
+                    SetReward(1.0f);
+                    EndEpisode();
+                }
+                else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
+                {
+                    SetReward(-1.0f);
+                    EndEpisode();
+                }
+                else
+                {
+                    SetReward(-0.5f);
+                }
             }
+
             else
             {
-                SetReward(-0.5f);
+                SetReward(-0.7f);
             }
-        }
-            
-        else
-        {
-            SetReward(-0.7f);
         }
 
     }
