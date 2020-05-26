@@ -25,22 +25,20 @@ public class BubbleScript : MonoBehaviour
     }
 
     void OnMouseDown(){
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
             TouchBubble();
     }  
 
     public void TouchBubble()
     {
-        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
+        print("touched bubble!!!");
+        bubbleValue--;
+        if (bubbleValue == 0)
         {
-            print("touched bubble!!!");
-            bubbleValue--;
-            if (bubbleValue == 0)
-            {
-                BurstBubble();
-            }
-
-            _levelScript.GetComponent<LevelScript>().UpdateTouches();
+            BurstBubble();
         }
+
+        _levelScript.GetComponent<LevelScript>().UpdateTouches();
     }
 
     void BurstBubble(){
@@ -67,7 +65,10 @@ public class BubbleScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        print("aaaaaaa");
         TouchBubble();
+        print("bbbbbbb");
         Destroy(other.gameObject);
+        print("ccccccc");
     }
 }
