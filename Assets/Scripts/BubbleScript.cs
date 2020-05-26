@@ -56,10 +56,10 @@ public class BubbleScript : MonoBehaviour
         tb3.GetComponent<TinyBubbleScript>().SetDir(3);
         tb4.GetComponent<TinyBubbleScript>().SetDir(4);
 
-        Destroy(tb1, 5);
-        Destroy(tb2, 5);
-        Destroy(tb3, 5);
-        Destroy(tb4, 5);
+        Destroy(tb1, 4);
+        Destroy(tb2, 4);
+        Destroy(tb3, 4);
+        Destroy(tb4, 4);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

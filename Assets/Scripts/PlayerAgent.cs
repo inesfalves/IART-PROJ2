@@ -82,11 +82,12 @@ public class PlayerAgent : Agent
                 yMask.Add(i);
             }
         }
-        InvokeRepeating("Decide", 3.0f, 3.0f);
+
+        InvokeRepeating("Decide", 5.0f, 5.0f);
     }
 
-    void Decide(){
-        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0){
+    public void Decide(){
+        if ((GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)){
                 RequestDecision();
         }
     }
@@ -119,6 +120,7 @@ public class PlayerAgent : Agent
             controlSignal.y = 5 - 4 * vectorAction[1];
 
             bool found_bubble = false;
+            print("action");
 
             GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
             foreach (GameObject bubble in bubbles)
@@ -136,12 +138,14 @@ public class PlayerAgent : Agent
             {
                 if (found_bubble && _levelScript.HasWon())
                 {
+                    print("won");
                     AddReward(1.0f);
                     EndEpisode();
                 }
                 else if (found_bubble && _levelScript.HasLost())
                 {
-                    AddReward(-1.0f);
+                    print("lost");
+                    AddReward(-0.75f);
                     EndEpisode();
                 }
                 else

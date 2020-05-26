@@ -22,13 +22,11 @@ public class LevelScript : MonoBehaviour
     {
         if (HasWon())
         {
-            print("you won :D");
             //Application.Quit(); nao funciona com o editor
             //UnityEditor.EditorApplication.isPlaying = false;
         }
         else if (HasLost())
         {
-            print("you lost :(");
             //Application.Quit();
             //UnityEditor.EditorApplication.isPlaying = false;
         }
@@ -60,13 +58,14 @@ public class LevelScript : MonoBehaviour
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
         GameObject[] tinies = GameObject.FindGameObjectsWithTag("TinyBubble");
 
+        Destroy(grid);
+
         foreach(GameObject bubble in bubbles){
             Destroy(bubble);
         }
         foreach(GameObject tiny in tinies){
             Destroy(tiny);
         }
-        Destroy(grid);
 
         Instantiate(level_prefab, new Vector3(0,0,0), Quaternion.identity);
         
