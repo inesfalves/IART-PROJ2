@@ -7,30 +7,14 @@ public class PlayerAgent : Agent
 {
 
     private LevelScript _levelScript;
+    public List<int> xMask = new List<int>();
+    public List<int> yMask = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {
         _levelScript = GameObject.Find("LevelScriptEmpty").GetComponent<LevelScript>();
-        InvokeRepeating("Decide", 3.0f, 3.0f);
-    }
-
-    void Decide(){
-        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0){
-                RequestDecision();
-        }
-    }
-
-    public override void OnEpisodeBegin() {
-        _levelScript.ResetTouches();
-        _levelScript.ResetBubbles();
-    }
-
-    public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker){
-        
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
-        List<int> xMask = new List<int>();
-        List<int> yMask = new List<int>();
 
         foreach (GameObject bubble in bubbles){
             Transform trans = bubble.GetComponent<Transform>();
@@ -98,7 +82,21 @@ public class PlayerAgent : Agent
                 yMask.Add(i);
             }
         }
+        InvokeRepeating("Decide", 3.0f, 3.0f);
+    }
 
+    void Decide(){
+        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0){
+                RequestDecision();
+        }
+    }
+
+    public override void OnEpisodeBegin() {
+        _levelScript.ResetTouches();
+        _levelScript.ResetBubbles();
+    }
+
+    public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker){
         actionMasker.SetMask(0, xMask);
         actionMasker.SetMask(1, yMask);
     }
