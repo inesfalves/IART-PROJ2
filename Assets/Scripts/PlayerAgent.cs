@@ -6,15 +6,18 @@ using Unity.MLAgents.Sensors;
 public class PlayerAgent : Agent
 {
 
-    private GameObject _levelScript;
+    private LevelScript _levelScript;
 
     // Start is called before the first frame update
     void Start()
     {
-        _levelScript = GameObject.Find("LevelScriptEmpty");
+        _levelScript = GameObject.Find("LevelScriptEmpty").GetComponent<LevelScript>();
     }
 
-    public override void OnEpisodeBegin() { }
+    public override void OnEpisodeBegin() {
+        _levelScript.ResetTouches();
+        _levelScript.ResetBubbles();
+     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -30,8 +33,6 @@ public class PlayerAgent : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
-        {
             Vector2 controlSignal = Vector2.zero;
             controlSignal.x = -18 + 5 * vectorAction[0];
             controlSignal.y = 5 - 4 * vectorAction[1];
@@ -53,27 +54,25 @@ public class PlayerAgent : Agent
 
             if (found_bubble)
             {
-                if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
+                if (found_bubble && _levelScript.HasWon())
                 {
-                    SetReward(1.0f);
+                    AddReward(1.0f);
                     EndEpisode();
                 }
-                else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
+                else if (found_bubble && _levelScript.HasLost())
                 {
-                    SetReward(-1.0f);
+                    AddReward(-1.0f);
                     EndEpisode();
                 }
                 else
                 {
-                    SetReward(-0.5f);
+                    AddReward(-0.05f);
                 }
-            }
-
-            else
+            } else
             {
-                SetReward(-0.7f);
+                AddReward(-0.7f);
             }
-        }
+        
 
     }
 

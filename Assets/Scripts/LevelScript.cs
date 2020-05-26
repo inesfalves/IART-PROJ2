@@ -6,6 +6,9 @@ using UnityEngine;
 public class LevelScript : MonoBehaviour
 {
     public int maxTouches;
+
+    public GameObject level_prefab;
+
     private int _touchesLeft;
 
     // Start is called before the first frame update
@@ -35,6 +38,11 @@ public class LevelScript : MonoBehaviour
     {
         _touchesLeft--;
     }
+    
+    public void ResetTouches()
+    {
+        _touchesLeft = maxTouches;
+    }
 
     public bool HasWon()
     {
@@ -45,4 +53,15 @@ public class LevelScript : MonoBehaviour
     {
         return _touchesLeft == 0 && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0);
     }
+    
+    public void ResetBubbles()
+    {
+        GameObject grid = GameObject.FindGameObjectWithTag("Grid");
+
+        Destroy(grid);
+
+        Instantiate(level_prefab, new Vector3(0,0,0), Quaternion.identity);
+        
+    }
+
 }

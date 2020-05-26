@@ -31,7 +31,6 @@ public class BubbleScript : MonoBehaviour
 
     public void TouchBubble()
     {
-        print("touched bubble!!!");
         bubbleValue--;
         if (bubbleValue == 0)
         {
@@ -57,18 +56,15 @@ public class BubbleScript : MonoBehaviour
         tb3.GetComponent<TinyBubbleScript>().SetDir(3);
         tb4.GetComponent<TinyBubbleScript>().SetDir(4);
 
-        Destroy(tb1, 3);
-        Destroy(tb2, 3);
-        Destroy(tb3, 3);
-        Destroy(tb4, 3);
+        Destroy(tb1, 5);
+        Destroy(tb2, 5);
+        Destroy(tb3, 5);
+        Destroy(tb4, 5);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        print("aaaaaaa");
         TouchBubble();
-        print("bbbbbbb");
         Destroy(other.gameObject);
-        print("ccccccc");
     }
 }
