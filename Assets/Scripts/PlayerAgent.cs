@@ -46,29 +46,29 @@ public class PlayerAgent : Agent
                 bubble.GetComponent<BubbleScript>().TouchBubble();
                 break;
             }
+        }
 
-            if (found_bubble)
+        if (found_bubble)
+        {
+            if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
             {
-                if (found_bubble && _levelScript.GetComponent<LevelScript>().HasWon())
-                {
-                    SetReward(10.0f);
-                    EndEpisode();
-                }
-                else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
-                {
-                    SetReward(-10.0f);
-                    EndEpisode();
-                }
-                else
-                {
-                    SetReward(-0.5f);
-                }
+                SetReward(1.0f);
+                EndEpisode();
             }
+            else if (found_bubble && _levelScript.GetComponent<LevelScript>().HasLost())
+            {
+                SetReward(-1.0f);
+                EndEpisode();
+            }
+            else
+            {
+                SetReward(-0.5f);
+            }
+        }
             
-            else if(!found_bubble)
-            {
-                SetReward(-0.7f);
-            }
+        else
+        {
+            SetReward(-0.7f);
         }
 
     }

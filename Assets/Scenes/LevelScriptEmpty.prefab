@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3368897984871081341}
   - component: {fileID: 3368897984871081342}
   m_Layer: 0
-  m_Name: Empty
+  m_Name: LevelScriptEmpty
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85b30e745bd48d047a11a2317b23d2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTouches: 1
+  maxTouches: 3

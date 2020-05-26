@@ -32,6 +32,7 @@ public class BubbleScript : MonoBehaviour
     {
         if (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)
         {
+            print("touched bubble!!!");
             bubbleValue--;
             if (bubbleValue == 0)
             {
