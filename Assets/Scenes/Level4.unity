@@ -190,6 +190,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelScriptEmpty
       objectReference: {fileID: 0}
+    - target: {fileID: 3368897984871081343, guid: 26e4ad743caf2d748b01a589d3c1b9c2,
+        type: 3}
+      propertyPath: m_TagString
+      value: LevelScript
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26e4ad743caf2d748b01a589d3c1b9c2, type: 3}
 --- !u!1 &994011189

@@ -6,7 +6,7 @@ using Unity.MLAgents.Sensors;
 public class PlayerAgent : Agent
 {
 
-    private LevelScript _levelScript;
+    private LevelScriptEmptyRandom _levelScript;
     public List<int> xMask = new List<int>();
     public List<int> yMask = new List<int>();
 
@@ -15,7 +15,7 @@ public class PlayerAgent : Agent
     // Start is called before the first frame update
     void Start()
     {
-        _levelScript = GameObject.Find("LevelScriptEmpty").GetComponent<LevelScript>();
+        _levelScript = GameObject.FindGameObjectWithTag("LevelScript").GetComponent<LevelScriptEmptyRandom>();
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
 
         foreach (GameObject bubble in bubbles){
@@ -134,6 +134,7 @@ public class PlayerAgent : Agent
             controlSignal.x = -18 + 5 * vectorAction[0];
             controlSignal.y = 5 - 4 * vectorAction[1];
 
+
             found_bubble = false;
             //print("action");
 
@@ -141,6 +142,7 @@ public class PlayerAgent : Agent
             foreach (GameObject bubble in bubbles)
             {
                 Transform rectobj = bubble.GetComponent<Transform>();
+                
                 if (rectobj.position.x == controlSignal.x && rectobj.position.y == controlSignal.y)
                 {
                     found_bubble = true;
