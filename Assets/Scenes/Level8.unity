@@ -231,7 +231,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
-  m_InferenceDevice: 0
+  m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: BubbleBlast
   TeamId: 0
@@ -252,6 +252,9 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 1000
+  xMask: 
+  yMask: 
+  found_bubble: 0
 --- !u!4 &1014806615
 Transform:
   m_ObjectHideFlags: 0

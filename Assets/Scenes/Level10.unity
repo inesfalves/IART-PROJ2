@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 104
+    VectorObservationSize: 120
     NumStackedVectorObservations: 1
     VectorActionSize: 0500000006000000
     VectorActionDescriptions: []
@@ -254,6 +254,7 @@ MonoBehaviour:
   MaxStep: 1000
   xMask: 
   yMask: 
+  found_bubble: 0
 --- !u!4 &1014806615
 Transform:
   m_ObjectHideFlags: 0
