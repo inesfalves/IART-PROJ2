@@ -233,7 +233,7 @@ MonoBehaviour:
     VectorActionSize: 0500000006000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 79ce394dd8a4a2a439bea2dc912a95c9, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: BubbleBlast

@@ -230,7 +230,7 @@ MonoBehaviour:
     VectorActionSize: 0500000006000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 11400000, guid: 79ce394dd8a4a2a439bea2dc912a95c9, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: BubbleBlast
@@ -269,7 +269,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1023427863
+--- !u!1001 &1385668287
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -385,6 +385,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2155142009448011068, guid: 4a47b014f6860994a87e06ee8f0394fd,
+        type: 3}
+      propertyPath: bubbleValue
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a47b014f6860994a87e06ee8f0394fd, type: 3}

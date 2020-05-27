@@ -38,7 +38,7 @@ public class BubbleScript : MonoBehaviour
             BurstBubble();
         }
 
-        _levelScript.GetComponent<LevelScriptEmptyRandom>().UpdateTouches();
+        _levelScript.GetComponent<LevelScript>().UpdateTouches();
     }
 
     void BurstBubble(){
