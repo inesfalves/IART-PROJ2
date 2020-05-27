@@ -96,10 +96,11 @@ public class PlayerAgent : Agent
                 EndEpisode();
             } else if (found_bubble && _levelScript.HasLost()){
                 print("lost");
-                AddReward(-1.0f);
+                AddReward(-0.8f);
                 EndEpisode();
             }else{
-                AddReward(-0.05f);
+                print("touch");
+                AddReward(-0.01f);
             }
             RequestDecision();
         }
@@ -149,7 +150,8 @@ public class PlayerAgent : Agent
             }
 
             if (!found_bubble){
-                AddReward(-0.1f);
+                print("bad touch");
+                AddReward(-0.05f);
             }
         
 
