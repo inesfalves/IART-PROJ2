@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
+using UnityEngine;  
 
 public class BubbleScript : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class BubbleScript : MonoBehaviour
         bubbleValue--;
         if (bubbleValue == 0)
         {
-            BurstBubbleTest();
+            BurstBubble();
         }
 
         _levelScript.GetComponent<LevelScript>().UpdateTouches();
@@ -56,65 +57,11 @@ public class BubbleScript : MonoBehaviour
         tb3.GetComponent<TinyBubbleScript>().SetDir(3);
         tb4.GetComponent<TinyBubbleScript>().SetDir(4);
 
-        Destroy(tb1, 4);
-        Destroy(tb2, 4);
-        Destroy(tb3, 4);
-        Destroy(tb4, 4);
+        Destroy(tb1, 3);
+        Destroy(tb2, 3);
+        Destroy(tb3, 3);
+        Destroy(tb4, 3);
     }
-
-    void BurstBubbleTest(){
-
-        Vector3 pos = transform.position;
-
-        int col = (int)(pos.x + 18)/5;
-        int line = (int)(pos.y - 5)/(-4);
-
-        int up  = line;
-        int down = 5 - up;
-        int left = col;
-        int right = 4 - left; 
-
-        GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
-
-        foreach (GameObject bubble in bubbles)
-        {
-            if(up > 0){
-                Transform bubbleTrans = bubble.GetComponent<Transform>();
-                if(bubbleTrans.position.y == pos.y - (line - up)*5 && bubbleTrans.position.x == pos.x){
-                    bubble.GetComponent<BubbleScript>().TouchBubble();
-                    up = 0;
-                }
-                else up--;
-            }
-            if(down > 0){
-                Transform bubbleTrans = bubble.GetComponent<Transform>();
-                if(bubbleTrans.position.y == pos.y + (line - down)*5 && bubbleTrans.position.x == pos.x){
-                    bubble.GetComponent<BubbleScript>().TouchBubble();
-                    down = 0;
-                }
-                else down--;
-            }
-            if(left > 0){
-                Transform bubbleTrans = bubble.GetComponent<Transform>();
-                if(bubbleTrans.position.x == pos.x - (line - left)*5 && bubbleTrans.position.y == pos.y){
-                    bubble.GetComponent<BubbleScript>().TouchBubble();
-                    left = 0;
-                }
-                else left--;
-            }
-            if(right > 0){
-                Transform bubbleTrans = bubble.GetComponent<Transform>();
-                if(bubbleTrans.position.x == pos.x + (line - right)*5 && bubbleTrans.position.y == pos.y){
-                    bubble.GetComponent<BubbleScript>().TouchBubble();
-                    right = 0;
-                }
-                else right--;
-            }      
-        }
-
-        Destroy(gameObject);
-    }
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         TouchBubble();

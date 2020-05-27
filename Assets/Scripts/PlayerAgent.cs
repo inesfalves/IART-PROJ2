@@ -10,6 +10,8 @@ public class PlayerAgent : Agent
     public List<int> xMask = new List<int>();
     public List<int> yMask = new List<int>();
 
+    public bool found_bubble = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -83,16 +85,28 @@ public class PlayerAgent : Agent
             }
         }
 
-        InvokeRepeating("Decide", 5.0f, 5.0f);
+        InvokeRepeating("Decide", 3.0f, 3.0f);
     }
 
     public void Decide(){
-        if ((GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0)){
-                RequestDecision();
+        if (GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0){
+            if (found_bubble && _levelScript.HasWon()){
+                print("won");
+                AddReward(1.0f);
+                EndEpisode();
+            } else if (found_bubble && _levelScript.HasLost()){
+                print("lost");
+                AddReward(-1.0f);
+                EndEpisode();
+            }else{
+                AddReward(-0.05f);
+            }
+            RequestDecision();
         }
     }
 
     public override void OnEpisodeBegin() {
+       // print("Begin");
         _levelScript.ResetTouches();
         _levelScript.ResetBubbles();
     }
@@ -119,8 +133,8 @@ public class PlayerAgent : Agent
             controlSignal.x = -18 + 5 * vectorAction[0];
             controlSignal.y = 5 - 4 * vectorAction[1];
 
-            bool found_bubble = false;
-            print("action");
+            found_bubble = false;
+            //print("action");
 
             GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
             foreach (GameObject bubble in bubbles)
@@ -134,26 +148,7 @@ public class PlayerAgent : Agent
                 }
             }
 
-            if (found_bubble)
-            {
-                if (found_bubble && _levelScript.HasWon())
-                {
-                    print("won");
-                    AddReward(1.0f);
-                    EndEpisode();
-                }
-                else if (found_bubble && _levelScript.HasLost())
-                {
-                    print("lost");
-                    AddReward(-0.75f);
-                    EndEpisode();
-                }
-                else
-                {
-                    AddReward(-0.05f);
-                }
-            } else
-            {
+            if (!found_bubble){
                 AddReward(-0.1f);
             }
         

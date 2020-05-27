@@ -44,12 +44,12 @@ public class LevelScript : MonoBehaviour
 
     public bool HasWon()
     {
-        return (GameObject.FindGameObjectsWithTag("Bubble") == null || GameObject.FindGameObjectsWithTag("Bubble").Length == 0);
+        return GameObject.FindGameObjectsWithTag("Bubble").Length == 0;
     }
 
     public bool HasLost()
     {
-        return _touchesLeft == 0 && (GameObject.FindGameObjectsWithTag("TinyBubble") == null || GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0);
+        return _touchesLeft == 0 && GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0;
     }
     
     public void ResetBubbles()
