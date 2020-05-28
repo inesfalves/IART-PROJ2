@@ -23,12 +23,12 @@ public class LevelScript : MonoBehaviour
         if (HasWon())
         {
             //Application.Quit(); nao funciona com o editor
-            //UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         }
         else if (HasLost())
         {
             //Application.Quit();
-            //UnityEditor.EditorApplication.isPlaying = false;
+            UnityEditor.EditorApplication.isPlaying = false;
         }
     }
 
@@ -44,7 +44,7 @@ public class LevelScript : MonoBehaviour
 
     public bool HasWon()
     {
-        return GameObject.FindGameObjectsWithTag("Bubble").Length == 0;
+        return GameObject.FindGameObjectsWithTag("Bubble").Length == 0 && GameObject.FindGameObjectsWithTag("TinyBubble").Length == 0;
     }
 
     public bool HasLost()

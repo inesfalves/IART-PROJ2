@@ -6,7 +6,7 @@ using Unity.MLAgents.Sensors;
 public class PlayerAgent : Agent
 {
 
-    private LevelScriptEmptyRandom _levelScript;
+    private LevelScript _levelScript;
     public List<int> xMask = new List<int>();
     public List<int> yMask = new List<int>();
 
@@ -15,7 +15,7 @@ public class PlayerAgent : Agent
     // Start is called before the first frame update
     void Start()
     {
-        _levelScript = GameObject.FindGameObjectWithTag("LevelScript").GetComponent<LevelScriptEmptyRandom>();
+        _levelScript = GameObject.FindGameObjectWithTag("LevelScript").GetComponent<LevelScript>();
         GameObject[] bubbles = GameObject.FindGameObjectsWithTag("Bubble");
 
         foreach (GameObject bubble in bubbles){
