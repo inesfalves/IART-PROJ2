@@ -1,2 +1,0 @@
-# IART-PROJ2
-
